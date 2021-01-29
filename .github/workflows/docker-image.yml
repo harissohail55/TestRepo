@@ -21,18 +21,18 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hariscontainerregistrydemo.azurecr.io/TestRepo:${{ github.sha }}
+      run: docker build . --file Dockerfile --tag hariscontainerregistrydemo.azurecr.io/testrepo:${{ github.sha }}
    
     - uses: Azure/container-scan@v0
       name: Scan image for vulnerabilities
       id: container-scan
       continue-on-error: true
       with:
-        image-name: hariscontainerregistrydemo.azurecr.io/TestRepo:${{ github.sha }}
+        image-name: hariscontainerregistrydemo.azurecr.io/testrepo:${{ github.sha }}
 
-    - name: Push Docker image - hariscontainerregistrydemo.azurecr.io/TestRepo:${{ github.sha }}
+    - name: Push Docker image - hariscontainerregistrydemo.azurecr.io/testrepo:${{ github.sha }}
       run: |
-        docker push hariscontainerregistrydemo.azurecr.io/TestRepo:${{ github.sha }}
+        docker push hariscontainerregistrydemo.azurecr.io/testrepo:${{ github.sha }}
 
     - name: Post logs to appinsights
       uses: Azure/publish-security-assessments@v0
