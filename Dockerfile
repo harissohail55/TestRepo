@@ -1,2 +1,2 @@
-FROM ubuntu:1.0
+FROM ubuntu:12.04.5
 CMD ["ECHO", "Hello World"]
